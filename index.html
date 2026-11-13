@@ -216,18 +216,17 @@ const WA_D = 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148
   const cv = $('#bg'), g = cv.getContext('2d');
   const SCALE = 0.5; let W = 0, H = 0, t = 0, timer = 0;
   function size() { W = Math.max(2, Math.round(innerWidth * SCALE)); H = Math.max(2, Math.round(innerHeight * SCALE)); cv.width = W; cv.height = H; }
-  const L = 7;
+  const L = 6;
   function draw() {
     g.clearRect(0, 0, W, H);
-    const narrow = innerWidth < 700, fx = narrow ? 2.4 : 1, ampK = narrow ? 1.25 : 1;     // phones: longer, taller, brighter waves so they read behind the card
     for (let i = 0; i < L; i++) {
-      const k = i / (L - 1), base = H * (0.30 + k * 0.62), amp = H * (0.05 + k * 0.03) * ampK, f = (0.0045 - k * 0.0012) * fx, sp = 0.35 + k * 0.25;
+      const k = i / (L - 1), base = H * (0.42 + k * 0.5), amp = H * (0.05 + k * 0.035), f = 0.0045 - k * 0.0014, sp = 0.35 + k * 0.25;
       const grd = g.createLinearGradient(0, base - amp, 0, H);
-      grd.addColorStop(0, 'rgba(240,243,250,' + (0.20 - k * 0.03).toFixed(3) + ')'); grd.addColorStop(1, 'rgba(240,243,250,0.01)');
+      grd.addColorStop(0, 'rgba(235,238,245,' + (0.075 - k * 0.012).toFixed(3) + ')'); grd.addColorStop(1, 'rgba(235,238,245,0)');
       g.beginPath(); g.moveTo(0, H);
       for (let x = 0; x <= W; x += 6) g.lineTo(x, base + Math.sin(x * f * 2 + t * sp + i * 1.7) * amp + Math.sin(x * f * 5.3 - t * sp * 0.6 + i) * amp * 0.35);
       g.lineTo(W, H); g.closePath(); g.fillStyle = grd; g.fill();
-      g.strokeStyle = 'rgba(245,247,252,' + (0.34 - k * 0.04).toFixed(3) + ')'; g.lineWidth = 1.2; g.stroke();
+      g.strokeStyle = 'rgba(235,238,245,' + (0.10 - k * 0.025).toFixed(3) + ')'; g.lineWidth = 1; g.stroke();
     }
   }
   function loop() { t += 0.035; draw(); timer = setTimeout(loop, 33); }
