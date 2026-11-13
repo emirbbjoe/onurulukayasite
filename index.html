@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Onur Ulukaya">
+<meta name="twitter:title" content="Onur Ulukaya">
+<title>Onur Ulukaya</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='9'%20fill='%23000'/%3E%3Crect%20x='.5'%20y='.5'%20width='31'%20height='31'%20rx='8.5'%20fill='none'%20stroke='%23fff'%20stroke-opacity='.25'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='6.5'%20fill='none'%20stroke='%23fff'%20stroke-width='3.2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;500&family=Syne:wght@800&display=swap">
+<style>
+:root{
+  --bg:#000; --fg:#e8ebf1; --soft:#aab2be; --muted:#747d8a; --line:rgba(255,255,255,.09);
+  --accent:rgb(228,231,238); --accent-rgb:228,231,238;
+  --pill:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015)),rgba(12,14,18,.72);
+  --lift:inset 0 1px 0 rgba(255,255,255,.06),0 10px 30px -12px rgba(0,0,0,.8);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --display:'Syne','Arial Black',Impact,system-ui,sans-serif;
+  --mono:'Martian Mono',ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:13px;line-height:1.6;overflow-x:hidden}
+::selection{background:rgba(var(--accent-rgb),.3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#bg{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:block}
+.glow{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 42%,transparent 25%,rgba(0,0,0,.9) 100%)}
+#spot{position:fixed;left:0;top:0;width:900px;height:900px;margin:-450px 0 0 -450px;z-index:1;pointer-events:none;opacity:0;transition:opacity .6s;
+  background:radial-gradient(circle,rgba(255,255,255,.07),transparent 62%);will-change:transform}
+.stage{position:relative;z-index:2;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 16px 20px;text-align:center}
+.center{width:100%;display:flex;flex-direction:column;align-items:center;gap:22px}
+
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;max-width:100%;padding:10px 20px;border-radius:999px;background:var(--pill);border:1px solid var(--line);box-shadow:var(--lift);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--fg);font-size:12px;letter-spacing:.16em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill.sm{padding:6px 14px;font-size:11px;letter-spacing:.1em}
+.sl{color:var(--muted);opacity:.75}
+.c{color:var(--soft)}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.14),0 0 12px rgba(255,255,255,.9);animation:beat 2.4s ease-in-out infinite}
+@keyframes beat{50%{opacity:.35}}
+
+/* title: chrome sweep every few seconds */
+.title{margin:0 0 -.2em;max-width:100%;font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,7.2vw,5.2rem);line-height:1.05;letter-spacing:.03em;overflow-wrap:anywhere;text-wrap:balance;text-transform:uppercase;cursor:default;
+  color:transparent;background:linear-gradient(100deg,#fff 0%,#fff 38%,#8f98a8 50%,#fff 62%,#fff 100%) 100% 0/260% 100%;-webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 0 26px rgba(255,255,255,.28));animation:sweep 7s ease-in-out 1.4s infinite}
+@keyframes sweep{0%{background-position:100% 0}22%,100%{background-position:-60% 0}}
+
+.socials{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.bubble{position:relative;display:grid;place-items:center;width:50px;height:50px;padding:0;border-radius:50%;background:var(--pill);border:1px solid var(--line);box-shadow:var(--lift);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:var(--soft);text-decoration:none;transition:transform .35s var(--spring),color .2s,border-color .2s,box-shadow .2s}
+.bubble svg{width:22px;height:22px;fill:currentColor}
+.bubble:hover,.bubble:focus-visible{transform:translateY(-4px) scale(1.1);color:#fff;border-color:rgba(255,255,255,.55);box-shadow:var(--lift),0 0 28px -4px rgba(255,255,255,.55)}
+.bubble:active{transform:scale(.92)}
+
+/* ───── the id card: a real card now ───── */
+.card{--gx:50%;--gy:0%;--ang:140deg;position:relative;width:min(440px,100%);text-align:left;border-radius:26px;overflow:hidden;
+  background:radial-gradient(420px circle at var(--gx) var(--gy),rgba(255,255,255,.085),transparent 62%),linear-gradient(155deg,rgba(255,255,255,.07),rgba(255,255,255,.012) 45%,rgba(255,255,255,.04)),rgba(10,11,14,.78);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 30px 70px -26px #000,0 0 0 1px rgba(255,255,255,.05);
+  transition:transform .18s ease-out;will-change:transform;padding:20px 22px 18px}
+.card::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+  background:conic-gradient(from var(--ang),rgba(255,255,255,.6),rgba(255,255,255,.06) 24%,rgba(255,255,255,.45) 50%,rgba(255,255,255,.06) 76%,rgba(255,255,255,.6));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.ch{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.chip{flex:none;width:40px;height:30px;border-radius:7px;position:relative;overflow:hidden;background:linear-gradient(135deg,#d7dbe3,#7d8696 55%,#c9ced8);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35),0 2px 8px rgba(0,0,0,.5)}
+.chip::before,.chip::after{content:'';position:absolute;background:rgba(0,0,0,.35)}
+.chip::before{left:0;right:0;top:50%;height:1px}.chip::after{top:0;bottom:0;left:38%;width:1px;box-shadow:12px 0 0 rgba(0,0,0,.35)}
+.ct{flex:1;font-size:11px;letter-spacing:.18em;color:var(--soft)}
+.live{background:rgba(255,255,255,.05);box-shadow:none;color:#fff}
+.fields{margin:0;padding:0;display:flex;flex-direction:column}
+.fields>div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.075);transition:padding .25s,background .25s}
+.fields>div:hover{padding-left:6px}
+.fields dt{color:var(--muted);font-size:11px;letter-spacing:.14em}
+.fields dd{margin:0;text-align:right;overflow-wrap:anywhere;font-weight:500;font-size:14px;color:#fff}
+.fields dd a{color:inherit;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.3);transition:border-color .2s,text-shadow .2s}
+.fields dd a:hover{border-color:#fff;text-shadow:0 0 14px rgba(255,255,255,.7)}
+.cf{display:flex;justify-content:space-between;align-items:center;gap:14px;padding-top:16px}
+.bars{flex:none;width:96px;height:24px;opacity:.5;background:repeating-linear-gradient(90deg,#c9ced8 0 2px,transparent 2px 4px,#c9ced8 4px 5px,transparent 5px 9px,#c9ced8 9px 12px,transparent 12px 14px,#c9ced8 14px 15px,transparent 15px 19px)}
+.save{font:inherit;cursor:pointer;color:#050505;background:#f1f3f7;border:0;border-radius:999px;padding:9px 18px;font-size:11px;font-weight:500;letter-spacing:.08em;transition:transform .35s var(--spring),box-shadow .25s}
+.save:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 26px -4px rgba(255,255,255,.7)}
+.save:active{transform:scale(.95)}
+
+.foot{width:100%;max-width:980px;display:flex;justify-content:center;margin-top:30px;color:var(--muted)}
+.foot .pill{color:var(--muted);font-size:10px;letter-spacing:.08em;line-height:normal;padding-block:7px}
+
+.center>*,.foot{opacity:0;transform:translateY(16px);animation:up .9s var(--spring) forwards}
+.center>:nth-child(1){animation-delay:.05s}.center>:nth-child(2){animation-delay:.18s}.center>:nth-child(3){animation-delay:.3s}.center>:nth-child(4){animation-delay:.42s}.foot{animation-delay:.6s}
+@keyframes up{to{opacity:1;transform:none}}
+@media (max-width:360px){.s2,#mCoord{display:none}}
+@media (max-width:480px){.card{padding:18px 16px 16px}.pill{letter-spacing:.1em}.bars{width:70px}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+<div id="spot" aria-hidden="true"></div>
+
+<main class="stage">
+  <section class="center">
+    <h1 class="title" id="title" aria-label="Onur Ulukaya">Onur Ulukaya</h1>
+
+    <div class="pill" role="status" aria-label="Yerel saat ve konum">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="mCode">IST</span><span class="sl" aria-hidden="true">//</span><span id="mTime">00:00:00</span><span class="sl s2" aria-hidden="true">//</span><span class="c" id="mCoord">41.01°N · 28.98°E</span>
+    </div>
+
+    <nav class="socials" id="links" aria-label="İletişim Bağlantıları"></nav>
+
+    <article class="card" id="card" aria-label="Kimlik Kartı">
+      <header class="ch"><span class="chip" aria-hidden="true"></span><span class="ct">Kimlik Kartı</span><span class="pill sm live"><span class="dot" aria-hidden="true"></span>Çevrimiçi</span></header>
+      <dl class="fields" id="fields"></dl>
+      <footer class="cf"><span class="bars" aria-hidden="true"></span><button class="save" id="save" type="button">Rehbere Ekle</button></footer>
+    </article>
+  </section>
+  <footer class="foot"><span class="pill sm">© 2026 Onur Ulukaya. Tüm Hakları Saklıdır.</span></footer>
+</main>
+
+<script>
+'use strict';
+/* ───────────── buradan düzenle ───────────── */
+const PROFILE = {
+  name: 'Onur Ulukaya',
+  phoneShown: '0530 455 32 02',
+  phoneIntl: '905304553202',          // tel: ve WhatsApp için (90 ülke kodu, başında 0 yok)
+  loc: 'İstanbul, TR',
+  language: 'Türkçe',
+  instagram: 'https://www.instagram.com/0nurulukaya'   // boş bırakırsan buton gizlenir
+};
+/* ─────────────────────────────────────────── */
+const $ = s => document.querySelector(s);
+const mk = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+const NS = 'http://www.w3.org/2000/svg';
+function icon(d) { const s = document.createElementNS(NS, 'svg'); s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true'); const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); s.appendChild(p); return s; }
+const IG_D = 'M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077';
+const WA_D = 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z';
+
+(function () {
+  const nav = $('#links');
+  const add = (label, href, d) => { const a = mk('a', 'bubble'); a.href = href; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.setAttribute('aria-label', label); a.title = label; a.appendChild(icon(d)); nav.appendChild(a); };
+  if (/^https:\/\/(www\.)?instagram\.com\//.test(PROFILE.instagram)) add('Instagram', PROFILE.instagram, IG_D);
+  add('WhatsApp', 'https://wa.me/' + PROFILE.phoneIntl, WA_D);
+})();
+
+(function () {
+  const f = $('#fields');
+  const row = (k, v, href) => { const d = mk('div'); const dt = mk('dt', '', k); const dd = mk('dd'); if (href) { const a = mk('a', '', v); a.href = href; dd.appendChild(a); } else dd.textContent = v; d.append(dt, dd); f.appendChild(d); };
+  row('Ad', PROFILE.name);
+  row('Telefon', PROFILE.phoneShown, 'tel:+' + PROFILE.phoneIntl);
+  row('Konum', PROFILE.loc);
+  row('Dil', PROFILE.language);
+})();
+
+/* "Rehbere Ekle": downloads a contact file the phone can import */
+(function () {
+  const b = $('#save'), idle = b.textContent;
+  b.addEventListener('click', () => {
+    const lines = ['BEGIN:VCARD', 'VERSION:3.0', 'N:Ulukaya;Onur;;;', 'FN:' + PROFILE.name, 'TEL;TYPE=CELL:+' + PROFILE.phoneIntl];
+    if (PROFILE.instagram) lines.push('URL:' + PROFILE.instagram);
+    lines.push('END:VCARD');
+    const url = URL.createObjectURL(new Blob([lines.join('\r\n')], { type: 'text/vcard' }));
+    const a = document.createElement('a'); a.href = url; a.download = 'Onur Ulukaya.vcf'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    b.textContent = 'İndirildi ✓'; setTimeout(() => { b.textContent = idle; }, 1800);
+  });
+})();
+
+/* clock (Istanbul), only ticks while the tab is visible */
+(function () {
+  const el = $('#mTime');
+  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  const tick = () => { const t = fmt.format(new Date()); if (el.textContent !== t) el.textContent = t; };
+  tick(); setInterval(() => { if (!document.hidden) tick(); }, 1000);
+})();
+
+/* title: decode effect on load and on hover */
+(function () {
+  const el = $('#title'), final = 'ONUR ULUKAYA', pool = 'ABCDEFGHIJKLMNOPRSTUVYZ#/<>+=', fin = PROFILE.name.toUpperCase();
+  let timer = 0;
+  function run() {
+    clearInterval(timer); let n = 0;
+    timer = setInterval(() => {
+      n += 0.7; let s = '';
+      for (let i = 0; i < fin.length; i++) s += (fin[i] === ' ' || i < n) ? fin[i] : pool[Math.floor(Math.random() * pool.length)];
+      el.textContent = s;
+      if (n >= fin.length) { clearInterval(timer); el.textContent = PROFILE.name; }
+    }, 38);
+  }
+  setTimeout(run, 250);
+  el.addEventListener('pointerenter', run);
+})();
+
+/* card tilt + metal edge + glare, and a soft spotlight (desktop pointers only) */
+(function () {
+  if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  const c = $('#card'), spot = $('#spot'); let px = 0, py = 0, raf = 0;
+  addEventListener('pointermove', e => {
+    px = e.clientX; py = e.clientY; spot.style.opacity = 1;
+    if (!raf) raf = requestAnimationFrame(() => { raf = 0; spot.style.transform = 'translate(' + px + 'px,' + py + 'px)'; });
+  }, { passive: true });
+  document.addEventListener('pointerleave', () => { spot.style.opacity = 0; });
+  c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    c.style.transform = 'perspective(900px) rotateX(' + ((0.5 - y) * 7).toFixed(2) + 'deg) rotateY(' + ((x - 0.5) * 9).toFixed(2) + 'deg)';
+    c.style.setProperty('--gx', (x * 100).toFixed(1) + '%'); c.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+    c.style.setProperty('--ang', (Math.atan2(y - 0.5, x - 0.5) * 180 / Math.PI + 180).toFixed(0) + 'deg');
+  });
+  c.addEventListener('pointerleave', () => { c.style.transform = ''; c.style.setProperty('--gx', '50%'); c.style.setProperty('--gy', '0%'); c.style.setProperty('--ang', '140deg'); });
+})();
+
+/* background: one smooth monochrome wave field, drawn small + stretched, ~30 fps, paused when hidden */
+(function () {
+  const cv = $('#bg'), g = cv.getContext('2d');
+  const SCALE = 0.5; let W = 0, H = 0, t = 0, timer = 0;
+  function size() { W = Math.max(2, Math.round(innerWidth * SCALE)); H = Math.max(2, Math.round(innerHeight * SCALE)); cv.width = W; cv.height = H; }
+  const L = 6;
+  function draw() {
+    g.clearRect(0, 0, W, H);
+    for (let i = 0; i < L; i++) {
+      const k = i / (L - 1), base = H * (0.42 + k * 0.5), amp = H * (0.05 + k * 0.035), f = 0.0045 - k * 0.0014, sp = 0.35 + k * 0.25;
+      const grd = g.createLinearGradient(0, base - amp, 0, H);
+      grd.addColorStop(0, 'rgba(235,238,245,' + (0.075 - k * 0.012).toFixed(3) + ')'); grd.addColorStop(1, 'rgba(235,238,245,0)');
+      g.beginPath(); g.moveTo(0, H);
+      for (let x = 0; x <= W; x += 6) g.lineTo(x, base + Math.sin(x * f * 2 + t * sp + i * 1.7) * amp + Math.sin(x * f * 5.3 - t * sp * 0.6 + i) * amp * 0.35);
+      g.lineTo(W, H); g.closePath(); g.fillStyle = grd; g.fill();
+      g.strokeStyle = 'rgba(235,238,245,' + (0.10 - k * 0.025).toFixed(3) + ')'; g.lineWidth = 1; g.stroke();
+    }
+  }
+  function loop() { t += 0.035; draw(); timer = setTimeout(loop, 33); }
+  function start() { if (!timer) loop(); }
+  function stop() { clearTimeout(timer); timer = 0; }
+  size(); draw(); start();
+  addEventListener('resize', () => { size(); draw(); });
+  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+})();
+</script>
+</body>
+</html>
